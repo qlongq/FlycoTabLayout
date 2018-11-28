@@ -78,7 +78,8 @@ public class SlidingDblTabActivity extends AppCompatActivity implements OnTabSel
         tabLayout_9.setViewPager(vp, mTitles);
         tabLayout_10.setViewPager(vp, mTitles);
 
-        vp.setCurrentItem(4);
+
+        vp.setCurrentItem(mTitles.size()-1);
 //
 //        tabLayout_1.showDot(4);
 //        tabLayout_3.showDot(4);
