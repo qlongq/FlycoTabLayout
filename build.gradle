@@ -13,10 +13,10 @@ buildscript {
 
 allprojects {
     repositories {
+        mavenLocal()
         jcenter()
-//        maven {
-//            url "http://dl.bintray.com/h07000223/maven"
-//        }
+        maven { url "https://jitpack.io" }
+
     }
 }
 
