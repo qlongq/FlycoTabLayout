@@ -70,6 +70,11 @@
     <attr name="tl_tab_percent" format="float"/>
     <!-- 设置字体选中颜色 -->
     <attr name="tl_textSelectColor" format="color"/>
+    <attr name="tl_textUnselectUpColor" format="color"/>
+    <attr name="tl_textUnselectBottomColor" format="color"/>
+    <attr name="tl_textSelectUpColor" format="color"/>
+    <attr name="tl_textSelectBottomColor" format="color"/>
+
     <!-- 设置字体未选中颜色 -->
     <attr name="tl_textUnselectColor" format="color"/>
     <!-- 设置字体加粗 -->
@@ -118,6 +123,10 @@
         <attr name="tl_textUnselectColor"/>
         <attr name="tl_textBold"/>
         <attr name="tl_textAllCaps"/>
+        <attr name="tl_textUnselectUpColor"/>
+        <attr name="tl_textUnselectBottomColor"/>
+        <attr name="tl_textSelectUpColor"/>
+        <attr name="tl_textSelectBottomColor"/>
 
     </declare-styleable>
     <declare-styleable name="SlidingTabLayout">

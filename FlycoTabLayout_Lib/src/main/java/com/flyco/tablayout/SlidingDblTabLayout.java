@@ -91,8 +91,11 @@ public class SlidingDblTabLayout extends HorizontalScrollView implements ViewPag
     private float mTextsize;
     private float mUpTextsize;
     private float mBottomTextSize;
-    private int mTextSelectColor;
-    private int mTextUnselectColor;
+    private int mTextSelectUpColor;
+    private int mTextSelectBottomColor;
+    private int mTextUnselectUpColor;
+    private int mTextUnselectBottomColor;
+
     private int mTextBold;
     private boolean mTextAllCaps;
 
@@ -163,8 +166,10 @@ public class SlidingDblTabLayout extends HorizontalScrollView implements ViewPag
         mTextsize = ta.getDimension(R.styleable.SlidingDblTabLayout_tl_textsize, sp2px(14));
         mUpTextsize = ta.getDimension(R.styleable.SlidingDblTabLayout_tl_up_textSize, sp2px(14));
         mBottomTextSize = ta.getDimension(R.styleable.SlidingDblTabLayout_tl_bottom_textSize, sp2px(14));
-        mTextSelectColor = ta.getColor(R.styleable.SlidingDblTabLayout_tl_textSelectColor, Color.parseColor("#ffffff"));
-        mTextUnselectColor = ta.getColor(R.styleable.SlidingDblTabLayout_tl_textUnselectColor, Color.parseColor("#AAffffff"));
+        mTextSelectUpColor = ta.getColor(R.styleable.SlidingDblTabLayout_tl_textSelectUpColor, Color.parseColor("#ffffff"));
+        mTextSelectBottomColor = ta.getColor(R.styleable.SlidingDblTabLayout_tl_textSelectBottomColor, Color.parseColor("#ffffff"));
+        mTextUnselectUpColor = ta.getColor(R.styleable.SlidingDblTabLayout_tl_textUnselectUpColor, Color.parseColor("#AAffffff"));
+        mTextUnselectBottomColor = ta.getColor(R.styleable.SlidingDblTabLayout_tl_textUnselectBottomColor, Color.parseColor("#AAffffff"));
         mTextBold = ta.getInt(R.styleable.SlidingDblTabLayout_tl_textBold, TEXT_BOLD_NONE);
         mTextAllCaps = ta.getBoolean(R.styleable.SlidingDblTabLayout_tl_textAllCaps, false);
 
@@ -302,7 +307,7 @@ public class SlidingDblTabLayout extends HorizontalScrollView implements ViewPag
             TextView tv_tab_title = (TextView) v.findViewById(R.id.tv_tab_title);
             TextView tv_tab_up = (TextView)v.findViewById(R.id.tv_tab_up);
             if (tv_tab_up != null) {
-                tv_tab_up.setTextColor(i == mCurrentTab ? mTextSelectColor : mTextUnselectColor);
+                tv_tab_up.setTextColor(i == mCurrentTab ? mTextSelectUpColor : mTextUnselectUpColor);
                 tv_tab_up.setTextSize(TypedValue.COMPLEX_UNIT_PX, mUpTextsize);
                 tv_tab_up.setPadding((int) mTabPadding, 0, (int) mTabPadding, 0);
                 if (mTextAllCaps) {
@@ -316,7 +321,7 @@ public class SlidingDblTabLayout extends HorizontalScrollView implements ViewPag
                 }
             }
             if (tv_tab_title != null) {
-                tv_tab_title.setTextColor(i == mCurrentTab ? mTextSelectColor : mTextUnselectColor);
+                tv_tab_title.setTextColor(i == mCurrentTab ? mTextSelectBottomColor : mTextUnselectBottomColor);
                 tv_tab_title.setTextSize(TypedValue.COMPLEX_UNIT_PX, mBottomTextSize);
                 tv_tab_title.setPadding((int) mTabPadding, 0, (int) mTabPadding, 0);
                 if (mTextAllCaps) {
@@ -388,13 +393,13 @@ public class SlidingDblTabLayout extends HorizontalScrollView implements ViewPag
             TextView tv_tab_up = (TextView) tabView.findViewById(R.id.tv_tab_up);
             TextView tab_title = (TextView) tabView.findViewById(R.id.tv_tab_title);
             if (tv_tab_up != null) {
-                tv_tab_up.setTextColor(isSelect ? mTextSelectColor : mTextUnselectColor);
+                tv_tab_up.setTextColor(isSelect ? mTextSelectUpColor : mTextUnselectUpColor);
                 if (mTextBold == TEXT_BOLD_WHEN_SELECT) {
                     tv_tab_up.getPaint().setFakeBoldText(isSelect);
                 }
             }
             if (tab_title != null) {
-                tab_title.setTextColor(isSelect ? mTextSelectColor : mTextUnselectColor);
+                tab_title.setTextColor(isSelect ? mTextSelectBottomColor : mTextUnselectBottomColor);
                 if (mTextBold == TEXT_BOLD_WHEN_SELECT) {
                     tab_title.getPaint().setFakeBoldText(isSelect);
                 }
@@ -656,12 +661,12 @@ public class SlidingDblTabLayout extends HorizontalScrollView implements ViewPag
     }
 
     public void setTextSelectColor(int textSelectColor) {
-        this.mTextSelectColor = textSelectColor;
+        this.mTextSelectBottomColor = textSelectColor;
         updateTabStyles();
     }
 
     public void setTextUnselectColor(int textUnselectColor) {
-        this.mTextUnselectColor = textUnselectColor;
+        this.mTextUnselectBottomColor = textUnselectColor;
         updateTabStyles();
     }
 
@@ -761,11 +766,11 @@ public class SlidingDblTabLayout extends HorizontalScrollView implements ViewPag
     }
 
     public int getTextSelectColor() {
-        return mTextSelectColor;
+        return mTextSelectBottomColor;
     }
 
     public int getTextUnselectColor() {
-        return mTextUnselectColor;
+        return mTextUnselectBottomColor;
     }
 
     public int getTextBold() {
