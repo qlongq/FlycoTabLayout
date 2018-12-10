@@ -16,9 +16,10 @@ allprojects {
     repositories {
         mavenLocal()
         maven{url 'http://maven.aliyun.com/nexus/content/groups/public/'}
-        jcenter() {url "http://jcenter.bintray.com/"}
+        jcenter()
         mavenCentral()
         maven { url "https://jitpack.io" }
+        google()
 
     }
 }
