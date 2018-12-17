@@ -64,6 +64,8 @@
     <!-- title -->
     <!-- 设置字体大小 -->
     <attr name="tl_textsize" format="dimension"/>
+    <!--设置选中后字体大小-->
+    <attr name="tl_selectTextsize" format="dimension"/>
     <attr name="tl_up_textSize" format="dimension"/>
     <attr name="tl_bottom_textSize" format="dimension"/>
     <!-- 设置每个tab占屏幕比例，如果设置此属性tabWidth不生效,取值范围（0，1）-->
@@ -160,6 +162,7 @@
 
         <!-- title -->
         <attr name="tl_textsize"/>
+        <attr name="tl_selectTextsize"/>
         <attr name="tl_textSelectColor"/>
         <attr name="tl_textUnselectColor"/>
         <attr name="tl_textBold"/>
