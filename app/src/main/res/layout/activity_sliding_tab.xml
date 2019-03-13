@@ -77,9 +77,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:background="#EC7263"
-                tl:tl_indicator_corner_radius="2dp"
-                tl:tl_indicator_height="4dp"
-                tl:tl_indicator_width="4dp"
+                tl:tl_indicator_height="0dp"
+                tl:tl_indicator_width="0dp"
                 tl:tl_selectTextsize="16sp"
                 tl:tl_textsize="12sp"
                 />
