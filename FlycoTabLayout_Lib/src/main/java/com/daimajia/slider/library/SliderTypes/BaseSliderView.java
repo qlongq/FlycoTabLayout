@@ -199,7 +199,7 @@ public abstract class BaseSliderView {
 
         Glide.with(mContext)
                 .load(mUrl)
-                .diskCacheStrategy(DiskCacheStrategy.ALL).into(targetImageView);
+                .into(targetImageView);
 
    }
 
