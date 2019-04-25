@@ -21,7 +21,7 @@ import com.flyco.tablayout.R;
  */
 public class SwipeToLoadLayout extends ViewGroup {
 
-    private static final String TAG = SwipeToLoadLayout.class.getSimpleName();
+    private static final String TAG = "--sdcmcc--";
 
     private static final int DEFAULT_SWIPING_TO_REFRESH_TO_DEFAULT_SCROLLING_DURATION = 200;
 
@@ -1428,13 +1428,15 @@ public class SwipeToLoadLayout extends ViewGroup {
     }
 
     private void scrollReleaseToDepth() {
-        Log.d("scrollReleaseToDepth", "--------------------1");
+        Log.d(TAG, "scrollReleaseToDepth");
         int duration = (int) ((float) mTargetViewHeight / mHeaderHeight) * mReleaseToRefreshToRefreshingScrollingDuration;
+        SwipeToLoadLayout.this.setEnabled(false);
         mAutoScroller.autoScroll(mTargetViewHeight - mHeaderOffset, duration);
         postDelayed(new Runnable() {
             @Override
             public void run() {
-                Log.d("scrollReleaseToDepth", "--------------------2");
+                Log.d(TAG, "scrollRefreshingToDefault");
+                SwipeToLoadLayout.this.setEnabled(true);
                 //避免回弹动画时触发刷新，状态设置为STATUS_SWIPING_TO_REFRESH
                 setStatus(STATUS.STATUS_SWIPING_TO_REFRESH);
                 scrollRefreshingToDefault();
@@ -1449,6 +1451,10 @@ public class SwipeToLoadLayout extends ViewGroup {
 
     private void scrollRefreshingToDefault() {
         mAutoScroller.autoScroll(-mHeaderOffset, mRefreshCompleteToDefaultScrollingDuration);
+        if (mDepthRefreshReleaseListener!=null)
+        {
+            mDepthRefreshReleaseListener.scrollToDefault();
+        }
     }
 
     private void scrollLoadingMoreToDefault() {

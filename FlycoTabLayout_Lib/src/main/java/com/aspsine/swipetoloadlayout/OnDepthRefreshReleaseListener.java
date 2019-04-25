@@ -9,4 +9,5 @@ import android.view.View;
 public interface OnDepthRefreshReleaseListener {
     void depthRefreshRelease(View view);
     void startDepthRefresh();
+    void scrollToDefault();
 }
