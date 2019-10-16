@@ -2,6 +2,7 @@ package com.daimajia.slider.library;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Message;
 import android.support.v4.view.PagerAdapter;
@@ -137,6 +138,10 @@ public class SliderLayout extends RelativeLayout{
 
     private boolean mAutoCycle;
 
+    private int indicatorSelectedColor;
+    private int indicatorUnSelectedColor;
+
+
     /**
      * the duration between animation.
      */
@@ -180,6 +185,8 @@ public class SliderLayout extends RelativeLayout{
         mTransformerSpan = attributes.getInteger(R.styleable.SliderLayout_pager_animation_span, 1100);
         mTransformerId = attributes.getInt(R.styleable.SliderLayout_pager_animation, Transformer.Default.ordinal());
         mAutoCycle = attributes.getBoolean(R.styleable.SliderLayout_auto_cycle,true);
+        indicatorSelectedColor = attributes.getColor(R.styleable.SliderLayout_slide_indicator_selected_color, Color.rgb(255, 255, 255));
+        indicatorUnSelectedColor = attributes.getColor(R.styleable.SliderLayout_slide_indicator_unselected_color, Color.argb(80,255,255,255));
         int visibility = attributes.getInt(R.styleable.SliderLayout_indicator_visibility,0);
         for(PagerIndicator.IndicatorVisibility v: PagerIndicator.IndicatorVisibility.values()){
             if(v.ordinal() == visibility){
@@ -314,6 +321,11 @@ public class SliderLayout extends RelativeLayout{
                 startAutoCycle();
             }
         }
+    }
+
+    public void removeAllPageChangedListener()
+    {
+        mViewPager.removeAllPageChangedListener();
     }
 
     /**
@@ -594,7 +606,8 @@ public class SliderLayout extends RelativeLayout{
         }
     }
     public void setPresetIndicator(PresetIndicators presetIndicator){
-        PagerIndicator pagerIndicator = (PagerIndicator)findViewById(presetIndicator.getResourceId());
+        PagerIndicator pagerIndicator = findViewById(presetIndicator.getResourceId());
+        pagerIndicator.setDefaultIndicatorColor(indicatorSelectedColor, indicatorUnSelectedColor);
         setCustomIndicator(pagerIndicator);
     }
 

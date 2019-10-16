@@ -2,11 +2,14 @@ package com.daimajia.slider.library.SliderTypes;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
+import com.daimajia.slider.library.GlideRoundCornersTransformation;
 
 import java.io.File;
 
@@ -18,6 +21,12 @@ import java.io.File;
  * if you want to show progressbar, you just need to set a progressbar id as @+id/loading_bar.
  */
 public abstract class BaseSliderView {
+
+    //图片是否需要圆角
+    protected boolean roundCorner = false;
+
+    //图片圆角的状态下圆角大小(dp)
+    protected int radiasDp = 0;
 
     protected Context mContext;
 
@@ -52,8 +61,17 @@ public abstract class BaseSliderView {
         CenterCrop, CenterInside, Fit, FitCenterCrop
     }
 
+    private BaseSliderView(){}
+
     protected BaseSliderView(Context context) {
         mContext = context;
+        roundCorner = false;
+    }
+
+    protected BaseSliderView(Context context, boolean isRoundCorner, int cournerRadiasDp){
+        mContext = context;
+        roundCorner  =isRoundCorner;
+        radiasDp = cournerRadiasDp;
     }
 
     /**
@@ -197,10 +215,21 @@ public abstract class BaseSliderView {
         if (targetImageView == null)
             return;
 
-        Glide.with(mContext)
-                .load(mUrl)
-                .into(targetImageView);
-
+        if (roundCorner&&radiasDp>0)
+        {
+            GlideRoundCornersTransformation transformation
+                    = new GlideRoundCornersTransformation(mContext,
+                    (int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, radiasDp, mContext.getResources().getDisplayMetrics()),
+                    GlideRoundCornersTransformation.CornerType.ALL);
+            RequestOptions options = new RequestOptions()
+                    .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                    .transform(transformation);
+            Glide.with(mContext).load(mUrl).apply(options).into(targetImageView);
+        }else {
+            Glide.with(mContext)
+                    .load(mUrl)
+                    .into(targetImageView);
+        }
    }
 
 

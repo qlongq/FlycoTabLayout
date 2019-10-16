@@ -27,7 +27,7 @@ public class PagerIndicator extends LinearLayout implements ViewPagerEx.OnPageCh
     private Context mContext;
 
     /**
-     * bind this Indicator with {@link ViewPagerEx}
+     * bind this Indicator with {@link com.daimajia.slider.library.Tricks.ViewPagerEx}
      */
     private ViewPagerEx mPager;
 
@@ -140,8 +140,8 @@ public class PagerIndicator extends LinearLayout implements ViewPagerEx.OnPageCh
         mUserSetUnSelectedIndicatorResId = attributes.getResourceId(R.styleable.PagerIndicator_unselected_drawable,
                 0);
 
-        mDefaultSelectedColor = attributes.getColor(R.styleable.PagerIndicator_selected_color, Color.rgb(0, 173, 239));
-        mDefaultUnSelectedColor = attributes.getColor(R.styleable.PagerIndicator_unselected_color, Color.argb(255,255,255,255));
+        mDefaultSelectedColor = attributes.getColor(R.styleable.PagerIndicator_selected_color, Color.rgb(255, 255, 255));
+        mDefaultUnSelectedColor = attributes.getColor(R.styleable.PagerIndicator_unselected_color, Color.argb(80,255,255,255));
 
         mDefaultSelectedWidth = attributes.getDimension(R.styleable.PagerIndicator_selected_width,(int)pxFromDp(6));
         mDefaultSelectedHeight = attributes.getDimensionPixelSize(R.styleable.PagerIndicator_selected_height,(int)pxFromDp(6));
@@ -452,7 +452,7 @@ public class PagerIndicator extends LinearLayout implements ViewPagerEx.OnPageCh
 
     @Override
     public void onPageSelected(int position) {
-         if(mItemCount == 0){
+        if(mItemCount == 0){
             return;
         }
         setItemAsSelected(position-1);

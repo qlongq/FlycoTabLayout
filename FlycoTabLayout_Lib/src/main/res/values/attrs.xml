@@ -336,7 +336,8 @@
             <enum name="ZoomOutSlide" value="14">ZoomOutSlide</enum>
             <enum name="ZoomOut" value="15">ZoomOut</enum>
         </attr>
-
+        <attr name="slide_indicator_selected_color" format="color"/>
+        <attr name="slide_indicator_unselected_color" format="color"/>
         <!-- page animation time span -->
         <attr name="pager_animation_span" format="integer"/>
 

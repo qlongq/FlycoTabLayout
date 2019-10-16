@@ -102,6 +102,13 @@ public class ViewPagerEx extends ViewGroup{
      */
     private int mExpectedAdapterCount;
 
+    public void removeAllPageChangedListener() {
+        if (mOnPageChangeListeners!=null)
+        {
+            mOnPageChangeListeners.clear();
+        }
+    }
+
     static class ItemInfo {
         Object object;
         int position;

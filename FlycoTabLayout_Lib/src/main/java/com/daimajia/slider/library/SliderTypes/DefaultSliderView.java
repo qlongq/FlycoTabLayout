@@ -18,6 +18,10 @@ public class DefaultSliderView extends BaseSliderView{
         super(context);
     }
 
+    public DefaultSliderView(Context context, boolean isRoundCorner, int cournerRadiasDp) {
+        super(context, isRoundCorner, cournerRadiasDp);
+    }
+
     @Override
     public View getView() {
         View v = LayoutInflater.from(getContext()).inflate(R.layout.render_type_default,null);
