@@ -9,13 +9,14 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.daimajia.demo.SliderActivity;
 import com.flyco.tablayoutsamples.adapter.SimpleHomeAdapter;
 
 public class SimpleHomeActivity extends AppCompatActivity {
     private Context mContext = this;
-    private final String[] mItems = {"SlidingTabLayout", "CommonTabLayout", "SegmentTabLayout", "SlidingDblTabActivity"};
+    private final String[] mItems = {"SlidingTabLayout", "CommonTabLayout", "SegmentTabLayout", "SlidingDblTabActivity", "SlideActivity"};
     private final Class<?>[] mClasses = {SlidingTabActivity.class, CommonTabActivity.class,
-            SegmentTabActivity.class, SlidingDblTabActivity.class};
+            SegmentTabActivity.class, SlidingDblTabActivity.class, SliderActivity.class};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
