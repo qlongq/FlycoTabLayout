@@ -43,6 +43,7 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Iterator;
 
 /**
  * Layout manager that allows the user to flip left and right
@@ -105,7 +106,20 @@ public class ViewPagerEx extends ViewGroup{
     public void removeAllPageChangedListener() {
         if (mOnPageChangeListeners!=null)
         {
-            mOnPageChangeListeners.clear();
+            Iterator<OnPageChangeListener> iterator = mOnPageChangeListeners.iterator();
+            while (iterator.hasNext())
+            {
+                OnPageChangeListener listener = iterator.next();
+                if (mPageChangeListenerIdentiCodes!=null && mPageChangeListenerIdentiCodes.size()>0)
+                {
+                    int hashCode = System.identityHashCode(listener);
+                    if (mPageChangeListenerIdentiCodes.contains(""+hashCode))
+                    {
+                        continue;
+                    }
+                }
+                iterator.remove();
+            }
         }
     }
 
@@ -214,6 +228,8 @@ public class ViewPagerEx extends ViewGroup{
     private int mDecorChildCount;
 
     private ArrayList<OnPageChangeListener> mOnPageChangeListeners = new ArrayList<>();
+    //缓存不可一键删除的pageChangeListener identiCode
+    private ArrayList<String>mPageChangeListenerIdentiCodes;
     private OnPageChangeListener mInternalPageChangeListener;
     private OnAdapterChangeListener mAdapterChangeListener;
     private PageTransformer mPageTransformer;
@@ -602,6 +618,26 @@ public class ViewPagerEx extends ViewGroup{
     public void addOnPageChangeListener(OnPageChangeListener listener) {
         if (!mOnPageChangeListeners.contains(listener)) {
             mOnPageChangeListeners.add(listener);
+        }
+    }
+
+    /**
+     * @param listener
+     * @param canOneKeyClear false removeAllPageChangedListener() cann't delete
+     */
+    public void addOnPageChangeListener(OnPageChangeListener listener, boolean canOneKeyClear)
+    {
+        if (listener==null)
+            return;
+        addOnPageChangeListener(listener);
+        if (!canOneKeyClear)
+        {
+            if (mPageChangeListenerIdentiCodes == null)
+            {
+                mPageChangeListenerIdentiCodes = new ArrayList<>();
+            }
+            int hashCode = System.identityHashCode(listener);
+            mPageChangeListenerIdentiCodes.add(""+hashCode);
         }
     }
 
